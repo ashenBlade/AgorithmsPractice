@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WorkoutApp
 {
@@ -8,6 +9,8 @@ namespace WorkoutApp
         /// Serves as identifier
         /// Must be unique
         /// </remarks>
+        [Required(ErrorMessage = "Nickname is required")]
+        [StringLength(20, MinimumLength = 4, ErrorMessage = "Nickname length must be in range (4...20)")]
         public string Nickname { get; set; }
 
         /// <summary>
@@ -43,13 +46,13 @@ namespace WorkoutApp
                     string name = null,
                     string surname = null,
                     DateTime? birthdate = null,
-                    Gender gender = Gender.None)
+                    Gender? gender = Gender.None)
         {
             Nickname = nickname;
             Name = name;
             Surname = surname;
             Birthdate = birthdate;
-            Gender = gender;
+            Gender = gender ?? Gender.None;
         }
     }
 }
