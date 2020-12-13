@@ -5,4 +5,23 @@
         <RootNamespace>WorkoutApp.Controller</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Model\Model.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="UserInfo.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>UserInfo.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="UserInfo.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>UserInfo.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>
