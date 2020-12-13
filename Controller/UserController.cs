@@ -14,12 +14,49 @@ namespace WorkoutApp.Controller
 
         #region CurrentUserInterface
 
-        public string GetNickname => Current.Nickname;
-        public string GetName => Current.Name;
-        public double? GetWeight => Current.Weight;
-        public double? GetHeight => Current.Height;
-        public DateTime? GetBirthdate => Current.Birthdate;
+        public string GetNickname => Current?.Nickname;
+        public string GetName => Current?.Name;
+        public double? GetWeight => Current?.Weight;
+        public double? GetHeight => Current?.Height;
+        public DateTime? GetBirthdate => Current?.Birthdate;
         public Gender GetGender => Current.Gender;
+
+        public void SetNickname(string nickname)
+        {
+            if (Current != null)
+                Current.Nickname = nickname;
+        }
+
+        public void SetName(string name)
+        {
+            if (Current != null)
+                Current.Name = name;
+        }
+
+        public void SetWeight(double weight)
+        {
+            if (Current != null)
+                Current.Weight = weight;
+        }
+
+        public void SetHeight(double height)
+        {
+            if (Current != null)
+                Current.Height = height;
+        }
+
+        public void SetBirthdate(DateTime birthdate)
+        {
+            if (Current != null)
+                Current.Birthdate = birthdate;
+        }
+
+
+        public void SetGender(Gender gender)
+        {
+            if (Current != null)
+                Current.Gender = gender;
+        }
 
         #endregion
 
@@ -38,10 +75,21 @@ namespace WorkoutApp.Controller
             Current = null;
         }
 
-        public void RegisterNewUser(string nickname)
+        /// <summary>
+        /// Registers new user by nickname
+        /// </summary>
+        /// <param name="nickname"> Nickname </param>
+        /// <returns> If user registered successfully </returns>
+        // TODO: check nickname for correctness
+        public bool TryRegisterNewUser(string nickname)
         {
-            var user = new User(nickname);
-            RegisteredUsers.Add(user);
+            if (RegisteredUsers.FirstOrDefault(i => i.Nickname == nickname) == null)
+            {
+                var user = new User(nickname);
+                RegisteredUsers.Add(user);
+                return true;
+            }
+            return false;
         }
 
         public bool TryAuthorize(string nickname)
