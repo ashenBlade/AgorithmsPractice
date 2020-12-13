@@ -4,6 +4,8 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
 
         <IsPackable>false</IsPackable>
+
+        <RootNamespace>Model.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,6 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Controller\Controller.csproj" />
       <ProjectReference Include="..\Model\Model.csproj" />
     </ItemGroup>
 
