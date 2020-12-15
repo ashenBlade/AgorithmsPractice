@@ -104,7 +104,7 @@ namespace WorkoutApp.Controller
         }
 
 
-        private void Save() => Save(UserInfo.DataFile, RegisteredUsers);
-        private List<User> LoadUsers() => Load<List<User>>(UserInfo.DataFile) ?? new List<User>();
+        private void Save() => Save(ProjectInfo.UsersData, RegisteredUsers);
+        private List<User> LoadUsers() => Load<List<User>>(ProjectInfo.UsersData) ?? new List<User>();
     }
 }
