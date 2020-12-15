@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 
@@ -78,14 +79,17 @@ namespace WorkoutApp.Controller
         /// <summary>
         /// Registers new user by nickname
         /// </summary>
-        /// <param name="nickname"> Nickname </param>
+        /// <param name="nickname"> New user nickname </param>
         /// <returns> If user registered successfully </returns>
-        // TODO: check nickname for correctness
         public bool TryRegisterNewUser(string nickname)
         {
-            if (RegisteredUsers.FirstOrDefault(i => i.Nickname == nickname) == null)
+            var user = new User(nickname);
+            var context = new ValidationContext(user);
+            var results = new List<ValidationResult>();
+            var isUserValid = Validator.TryValidateObject(user, context, results, true);
+            if (isUserValid &&
+                RegisteredUsers.FirstOrDefault(i => i.Nickname == nickname) == null)
             {
-                var user = new User(nickname);
                 RegisteredUsers.Add(user);
                 return true;
             }
