@@ -10,14 +10,14 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Update="UserInfo.resx">
+      <EmbeddedResource Update="ProjectInfo.resx">
         <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>UserInfo.Designer.cs</LastGenOutput>
+        <LastGenOutput>ProjectInfo.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="UserInfo.Designer.cs">
+      <Compile Update="ProjectInfo.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>UserInfo.resx</DependentUpon>
