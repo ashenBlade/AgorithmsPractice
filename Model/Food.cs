@@ -16,24 +16,24 @@ namespace WorkoutApp
         /// <summary>
         /// Calories per gram
         /// </summary>
-        [Range(0, double.MaxValue, ErrorMessage = "Calorie content can't be negative")]
+        [Range(0.0, double.MaxValue, ErrorMessage = "Calorie content can't be negative")]
         public double CaloriesPerGram { get; set; }
         /// <summary>
         /// Protein per gram
         /// </summary>
-        [Range(0, 100, ErrorMessage = "Proteins content must be longer than 0 and less than 100")]
+        [Range(0.0, 100.0, ErrorMessage = "Proteins content must be longer than 0 and less than 100"), ]
         public double ProteinPerGram { get; set; }
 
         /// <summary>
         /// Carbohydrates per gram
         /// </summary>
-        [Range(0, 100, ErrorMessage = "Carbohydrates content must be longer than 0 and less than 100")]
+        [Range(0.0, 100.0, ErrorMessage = "Carbohydrates content must be longer than 0 and less than 100")]
         public double CarbohydratesPerGram { get; set; }
 
         /// <summary>
         /// Fats per gram
         /// </summary>
-        [Range(0, 100, ErrorMessage = "Fats content must be longer than 0 and less than 100")]
+        [Range(0.0, 100.0, ErrorMessage = "Fats content must be longer than 0 and less than 100")]
         public double FatsPerGram { get; set; }
 
         /// <summary>
