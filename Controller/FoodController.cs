@@ -18,7 +18,7 @@ namespace WorkoutApp.Controller
         /// <param name="fats"> Fats per gram </param>
         /// <param name="proteins"> Protein per gram </param>
         /// <returns> If food added successfully </returns>
-        public bool AddNewFood(string name, double calories, double carbs, double fats, double proteins)
+        public bool AddNewFood(string name, double calories = 0, double carbs = 0, double fats = 0, double proteins = 0)
         {
             var food = new Food(name, calories, carbs, fats, proteins);
             var context = new ValidationContext(food);
