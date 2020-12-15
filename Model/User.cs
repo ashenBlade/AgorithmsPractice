@@ -10,7 +10,7 @@ namespace WorkoutApp
         /// Must be unique
         /// </remarks>
         [Required(ErrorMessage = "Nickname is required")]
-        [StringLength(20, MinimumLength = 4, ErrorMessage = "Nickname length must be in range (4...20)")]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "Nickname length must be in range (6...20)")]
         public string Nickname { get; set; }
 
         /// <summary>
