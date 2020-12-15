@@ -11,7 +11,7 @@ namespace WorkoutApp
         /// Name of food
         /// </summary>
         [Required]
-        [StringLength(20, MinimumLength = 4, ErrorMessage = "Food length must be in range (4...20)")]
+        [StringLength(20, MinimumLength = 3, ErrorMessage = "Food length must be in range (4...20)")]
         public string Name { get; set; }
         /// <summary>
         /// Calories per gram
