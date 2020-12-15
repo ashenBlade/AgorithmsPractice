@@ -37,7 +37,7 @@ namespace WorkoutApp
         public double FatsPerGram { get; set; }
 
         /// <summary>
-        /// What food does it include
+        /// What other food does it include
         /// </summary>
         public List<Food> Composition { get; set; }
 
