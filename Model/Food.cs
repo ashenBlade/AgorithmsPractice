@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WorkoutApp
 {
+    [Serializable]
     public class Food
     {
         /// <summary>
