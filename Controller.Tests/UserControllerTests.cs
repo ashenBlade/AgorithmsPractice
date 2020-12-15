@@ -7,8 +7,6 @@ namespace Controller.Tests
 {
     public class Tests
     {
-
-
         [SetUp]
         public void Setup()
         {
@@ -21,21 +19,28 @@ namespace Controller.Tests
             Assert.Pass();
         }
 
-        [TestCase("Vasya", TestName = "Valid nickname")]
+        [TestCase("Vladimir1997", TestName = "Nickname length - 5")]
         [TestCase("RiderInTheDark", TestName = "Valid nickname")]
         [TestCase("qwertyuiop", TestName = "Valid nickname")]
         public void CanRegisterNewUser(string nickname)
         {
             var uc = new UserController();
-            if (uc.TryRegisterNewUser(nickname))
-            {
-                Assert.Pass();
-                return;
-            }
-            Assert.Fail();
+            Assert.IsTrue(uc.TryRegisterNewUser(nickname));
         }
 
-        [TestCase("Zebra")]
+        [TestCase("lq", TestName = "Short nickname (2 chars)")]
+        [TestCase("      ", TestName = "White spaces")]
+        [TestCase("", TestName = "Empty string")]
+        [TestCase(null, TestName = "Argument is null")]
+        [TestCase("nullablevauesareperqwerwerwreqrqerwtfect", TestName = "Long nickname (>20 chars)")]
+        // [TestCase("Vasiliy Ivanov", TestName = "Contains white spaces")]
+        public void CanNotRegisterNewUser(string nickname)
+        {
+            var uc = new UserController();
+            Assert.IsFalse(uc.TryRegisterNewUser(nickname));
+        }
+
+        [TestCase("ZebraLion")]
         public void CanAuthorizeRegisteredUser(string nickname)
         {
             var uc = new UserController();
