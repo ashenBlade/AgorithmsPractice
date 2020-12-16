@@ -19,9 +19,10 @@ namespace Controller.Tests
             Assert.Pass();
         }
 
-        [TestCase("Vladimir1997", TestName = "Nickname length - 5")]
+        [TestCase("Vladimir1997", TestName = "With letters and digits")]
         [TestCase("RiderInTheDark", TestName = "Valid nickname")]
-        [TestCase("qwertyuiop", TestName = "Valid nickname")]
+        [TestCase("qwertyuiop", TestName = "Only lower case letters")]
+        [TestCase("Kirill_2008", TestName = "With special character")]
         public void CanRegisterNewUser(string nickname)
         {
             var uc = new UserController();
@@ -30,10 +31,13 @@ namespace Controller.Tests
 
         [TestCase("lq", TestName = "Short nickname (2 chars)")]
         [TestCase("      ", TestName = "White spaces")]
+        [TestCase(".", TestName = "Only dot")]
+        [TestCase(".NetFramework", TestName = "Dot in the first position")]
         [TestCase("", TestName = "Empty string")]
         [TestCase(null, TestName = "Argument is null")]
         [TestCase("nullablevauesareperqwerwerwreqrqerwtfect", TestName = "Long nickname (>20 chars)")]
-        // [TestCase("Vasiliy Ivanov", TestName = "Contains white spaces")]
+        [TestCase("Vasiliy Ivanov", TestName = "Contains white spaces")]
+        [TestCase("_____", TestName = "Contains only underlines")]
         public void CanNotRegisterNewUser(string nickname)
         {
             var uc = new UserController();
