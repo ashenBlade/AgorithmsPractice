@@ -79,11 +79,14 @@ namespace WorkoutApp.Controller
         /// <summary>
         /// Registers new user by nickname
         /// </summary>
-        /// <param name="nickname"> New user nickname </param>
+        /// <param name="nickname"> New user's nickname </param>
+        /// <param name="name"> New user's name </param>
+        /// <param name="weight"> New user's weight in kg </param>
+        /// <param name="height"> New user's height in meters</param>
         /// <returns> If user registered successfully </returns>
-        public bool TryRegisterNewUser(string nickname)
+        public bool TryRegisterNewUser(string nickname, string name = null, double weight = 0, double height = 0)
         {
-            var user = new User(nickname);
+            var user = new User(nickname, name, weight, height);
             var context = new ValidationContext(user);
             var results = new List<ValidationResult>();
             var isUserValid = Validator.TryValidateObject(user, context, results, true);
