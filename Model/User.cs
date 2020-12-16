@@ -18,6 +18,7 @@ namespace WorkoutApp
         /// <summary>
         /// Real user's name
         /// </summary>
+        [Name]
         public string Name { get; set; }
 
 
