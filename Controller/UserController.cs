@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 
@@ -78,14 +79,20 @@ namespace WorkoutApp.Controller
         /// <summary>
         /// Registers new user by nickname
         /// </summary>
-        /// <param name="nickname"> Nickname </param>
+        /// <param name="nickname"> New user's nickname </param>
+        /// <param name="name"> New user's name </param>
+        /// <param name="weight"> New user's weight in kg </param>
+        /// <param name="height"> New user's height in meters</param>
         /// <returns> If user registered successfully </returns>
-        // TODO: check nickname for correctness
-        public bool TryRegisterNewUser(string nickname)
+        public bool TryRegisterNewUser(string nickname, string name = null, double weight = 0, double height = 0)
         {
-            if (RegisteredUsers.FirstOrDefault(i => i.Nickname == nickname) == null)
+            var user = new User(nickname, name, weight, height);
+            var context = new ValidationContext(user);
+            var results = new List<ValidationResult>();
+            var isUserValid = Validator.TryValidateObject(user, context, results, true);
+            if (isUserValid &&
+                RegisteredUsers.FirstOrDefault(i => i.Nickname == nickname) == null)
             {
-                var user = new User(nickname);
                 RegisteredUsers.Add(user);
                 return true;
             }
@@ -100,7 +107,7 @@ namespace WorkoutApp.Controller
         }
 
 
-        private void Save() => Save(UserInfo.DataFile, RegisteredUsers);
-        private List<User> LoadUsers() => Load<List<User>>(UserInfo.DataFile) ?? new List<User>();
+        private void Save() => Save(ProjectInfo.UsersData, RegisteredUsers);
+        private List<User> LoadUsers() => Load<List<User>>(ProjectInfo.UsersData) ?? new List<User>();
     }
 }
