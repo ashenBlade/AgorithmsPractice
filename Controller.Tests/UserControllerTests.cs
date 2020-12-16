@@ -38,10 +38,21 @@ namespace Controller.Tests
         [TestCase("nullablevauesareperqwerwerwreqrqerwtfect", TestName = "Long nickname (>20 chars)")]
         [TestCase("Vasiliy Ivanov", TestName = "Contains white spaces")]
         [TestCase("_____", TestName = "Contains only underlines")]
-        public void CanNotRegisterNewUser(string nickname)
+        public void CanNotRegisterNewUserWithInvalidNickname(string nickname)
         {
             var uc = new UserController();
             Assert.IsFalse(uc.TryRegisterNewUser(nickname));
+        }
+
+        [TestCase("Vasya Petya", Description = "With whitespace")]
+        [TestCase("Vaya200", Description = "With digits")]
+        [TestCase("__Vasya__", Description = "With underline characters")]
+        [TestCase("Vasya__2008__", Description = "With underline characters and digits")]
+        public void CanNotRegisterNewUserWithInvalidName(string name)
+        {
+            var nickname = "SimpleNickname";
+            var uc = new UserController();
+            Assert.IsFalse(uc.TryRegisterNewUser(nickname, name));
         }
 
         [TestCase("ZebraLion")]
