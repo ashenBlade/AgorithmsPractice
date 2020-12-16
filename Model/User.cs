@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using WorkoutApp.Attributes;
 
 namespace WorkoutApp
 {
@@ -11,6 +12,7 @@ namespace WorkoutApp
         /// </remarks>
         [Required(ErrorMessage = "Nickname is required")]
         [StringLength(20, MinimumLength = 6, ErrorMessage = "Nickname length must be in range (6...20)")]
+        [Nickname]
         public string Nickname { get; set; }
 
         /// <summary>
