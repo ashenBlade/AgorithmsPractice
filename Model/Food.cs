@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using WorkoutApp.Attributes;
 
 namespace WorkoutApp
 {
@@ -12,6 +13,7 @@ namespace WorkoutApp
         /// </summary>
         [Required]
         [StringLength(20, MinimumLength = 3, ErrorMessage = "Food length must be in range (4...20)")]
+        [FoodName]
         public string Name { get; set; }
         /// <summary>
         /// Calories per gram
