@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace WorkoutApp.Attributes
 {
-    public class NameAttribute : ValidationAttribute
+    public class UserNameAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
