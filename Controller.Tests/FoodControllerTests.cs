@@ -49,6 +49,9 @@ namespace Controller.Tests
         [TestCase("Buckwheat", 0.01, 0.2, -0.1, Description = "With negative floating point values")]
         [TestCase("Buckwheat", 0.01, 0.2, -0.00000001, Description = "With negative value near to 0 (-0.000000001)")]
         [TestCase("Buckwheat", 0.01, 0.2, 100.00000001, Description = "With value near 100 (100.00000001)")]
+        [TestCase("White bread___", Description = "Food name with underline character")]
+        [TestCase("   ", Description = "Food name contains only white spaces")]
+        [TestCase("Hello123", Description = "Food name contains digits")]
         public void CanNotAddNewFood(string name, double calories = 0, double proteins = 0, double fats = 0, double carbs = 0)
         {
             var fc = new FoodController();
