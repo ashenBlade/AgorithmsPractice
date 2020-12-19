@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 
 namespace WorkoutApp.Controller
 {
@@ -22,11 +21,6 @@ namespace WorkoutApp.Controller
         public DateTime? GetBirthdate => Current?.Birthdate;
         public Gender GetGender => Current.Gender;
 
-        public void SetNickname(string nickname)
-        {
-            if (Current != null)
-                Current.Nickname = nickname;
-        }
 
         public void SetName(string name)
         {
@@ -107,7 +101,7 @@ namespace WorkoutApp.Controller
         }
 
 
-        private void Save() => Save(ProjectInfo.UsersData, RegisteredUsers);
+        public void Save() => Save(ProjectInfo.UsersData, RegisteredUsers);
         private List<User> LoadUsers() => Load<List<User>>(ProjectInfo.UsersData) ?? new List<User>();
     }
 }
