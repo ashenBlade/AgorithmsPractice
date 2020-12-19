@@ -4,8 +4,15 @@ using WorkoutApp.Attributes;
 
 namespace WorkoutApp
 {
+    [Serializable]
     public class User
     {
+        /// <summary>
+        /// Id in database
+        /// </summary>
+        [Key]
+        public int UserId { get; set; }
+
         /// <remarks>
         /// Serves as identifier
         /// Must be unique
