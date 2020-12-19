@@ -9,10 +9,16 @@ namespace WorkoutApp
     public class Food
     {
         /// <summary>
+        /// Id in database
+        /// </summary>
+        [Key]
+        public int FoodId { get; set; }
+
+        /// <summary>
         /// Name of food
         /// </summary>
         [Required]
-        [StringLength(20, MinimumLength = 3, ErrorMessage = "Food length must be in range (4...20)")]
+        [StringLength(20, MinimumLength = 3, ErrorMessage = "Food name length must be in range (4...20)")]
         [FoodName]
         public string Name { get; set; }
         /// <summary>
