@@ -7,18 +7,13 @@ namespace WorkoutApp
     [Serializable]
     public class User
     {
-        /// <summary>
-        /// Id in database
-        /// </summary>
-        [Key]
-        public int UserId { get; set; }
-
         /// <remarks>
         /// Serves as identifier
         /// Must be unique
         /// </remarks>
+        [Key]
         [Required(ErrorMessage = "Nickname is required")]
-        [StringLength(20, MinimumLength = 6, ErrorMessage = "Nickname length must be in range (6...20)")]
+        [StringLength(50, MinimumLength = 6, ErrorMessage = "Nickname length must be in range (6...50)")]
         [Nickname]
         public string Nickname { get; set; }
 
@@ -44,14 +39,14 @@ namespace WorkoutApp
         /// </summary>
         /// <remarks> Centimeters </remarks>
         [Range(0, 400)]
-        public double? Height { get; set; }
+        public double Height { get; set; }
 
         /// <summary>
         /// User's weight in kg
         /// </summary>
         /// <remarks> Kilograms </remarks>
         [Range(0, 400)]
-        public double? Weight { get; set; }
+        public double Weight { get; set; }
 
         /// <summary>
         /// Unified constructor
@@ -64,17 +59,17 @@ namespace WorkoutApp
         /// <param name="gender"> Gender </param>
         public User(string nickname,
                     string name = null,
-                    double? weight = null,
-                    double? height = null,
+                    double weight = 0,
+                    double height = 0,
                     DateTime? birthdate = null,
-                    Gender? gender = Gender.None)
+                    Gender gender = Gender.None)
         {
             Nickname = nickname;
             Height = height;
             Weight = weight;
             Name = name;
             Birthdate = birthdate;
-            Gender = gender ?? Gender.None;
+            Gender = gender;
         }
     }
 }
