@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using WorkoutApp.Attributes;
 using WorkoutApp.Controller;
+using WorkoutApp.Controller.Attributes;
+using WorkoutApp.Controller.Attributes.Controller;
 
 namespace WorkoutApp.Controller
 {
-    public class UserController : BaseController
+    public class UserController
     {
         /// <summary>
         /// Current authorized user
         /// </summary>
         private User Current { get; set; }
+
 
         #region CurrentUserInterface
 
@@ -61,12 +63,19 @@ namespace WorkoutApp.Controller
         #endregion
 
         /// <summary>
+        /// Save and load users' data
+        /// </summary>
+        private IFileDataManager<Dictionary<string, User>> DataManager { get; set; }
+
+        /// <summary>
         /// All registered users on local machine
         /// </summary>
         private Dictionary<string, User> RegisteredUsers { get; set; }
 
         public UserController()
         {
+            DataManager = new DatabaseDataManager<Dictionary<string, User>>();
+
             // Load from database
             RegisteredUsers = LoadUsers();
             Current = null;
@@ -104,8 +113,8 @@ namespace WorkoutApp.Controller
 
 
         public void Save() =>
-            Save(ProjectInfo.UsersData, RegisteredUsers);
+            DataManager.Save(ProjectInfo.UsersData, RegisteredUsers);
         private Dictionary<string, User> LoadUsers() =>
-            Load<Dictionary<string, User>>(ProjectInfo.UsersData) ?? new Dictionary<string, User>();
+             DataManager.Load(ProjectInfo.UsersData) ?? new Dictionary<string, User>();
     }
 }

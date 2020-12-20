@@ -3,7 +3,7 @@ using NUnit.Framework;
 using WorkoutApp;
 using WorkoutApp.Controller;
 
-namespace Controller.Tests
+namespace WorkoutApp.Controller.Tests
 {
     public class UserControllerTests
     {

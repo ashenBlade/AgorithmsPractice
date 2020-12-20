@@ -1,4 +1,4 @@
-namespace WorkoutApp
+namespace WorkoutApp.Controller
 {
     public enum Gender
     {

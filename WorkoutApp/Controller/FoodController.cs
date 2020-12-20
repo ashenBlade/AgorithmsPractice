@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using WorkoutApp.Controller;
+using WorkoutApp.Controller.Attributes.Controller;
 
 namespace WorkoutApp.Controller
 {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using WorkoutApp.Attributes;
+using WorkoutApp.Controller.Attributes;
 
-namespace WorkoutApp
+namespace WorkoutApp.Controller
 {
     [Serializable]
     public class User

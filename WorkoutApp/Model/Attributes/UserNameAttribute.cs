@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
-namespace WorkoutApp.Attributes
+namespace WorkoutApp.Controller.Attributes
 {
     public class UserNameAttribute : ValidationAttribute
     {

@@ -2,7 +2,7 @@ using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using WorkoutApp.Controller;
 
-namespace Controller.Tests
+namespace WorkoutApp.Controller.Tests
 {
     public class FoodControllerTests
     {
@@ -42,7 +42,7 @@ namespace Controller.Tests
         [TestCase(null, Description = "Name is \"null\"")]
         [TestCase("", Description = "Name is empty")]
         [TestCase("N", Description = "Name is too short (1 character)")]
-        [TestCase("ASfagjhaguhasdsdfweberbvjahsrg", Description = "Name is too long")]
+        [TestCase("ASfagjhaguhasdsdfweberbvjahsrgsdfsg", Description = "Name is too long")]
         [TestCase("Oatmeal", -1, Description = "Calorie content is negative")]
         [TestCase("Oatmeal", 100, 123, Description = "Proteins content is bigger than 100")]
         [TestCase("Oatmeal", -100, -1231, -1, -12323, Description = "All food properties negative")]

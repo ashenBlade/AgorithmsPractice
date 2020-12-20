@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WorkoutApp.Controller {
+namespace WorkoutApp.Controller.Attributes.Controller {
     using System;
     
     
@@ -54,6 +54,12 @@ namespace WorkoutApp.Controller {
         internal static string FoodsData {
             get {
                 return ResourceManager.GetString("FoodsData", resourceCulture);
+            }
+        }
+        
+        internal static string MealsData {
+            get {
+                return ResourceManager.GetString("MealsData", resourceCulture);
             }
         }
     }

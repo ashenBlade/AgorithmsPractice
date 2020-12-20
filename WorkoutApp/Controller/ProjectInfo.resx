@@ -24,4 +24,7 @@
     <data name="FoodsData" xml:space="preserve">
         <value>foods.dat</value>
     </data>
+    <data name="MealsData" xml:space="preserve">
+        <value>meals.dat</value>
+    </data>
 </root>
