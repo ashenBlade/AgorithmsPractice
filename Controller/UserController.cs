@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
+using WorkoutApp.Attributes;
+using WorkoutApp.Controller;
 
 namespace WorkoutApp.Controller
 {
@@ -14,18 +15,22 @@ namespace WorkoutApp.Controller
 
         #region CurrentUserInterface
 
-        public string GetNickname => Current?.Nickname;
-        public string GetName => Current?.Name;
-        public double? GetWeight => Current?.Weight;
-        public double? GetHeight => Current?.Height;
-        public DateTime? GetBirthdate => Current?.Birthdate;
-        public Gender GetGender => Current.Gender;
+        public bool IsUserAuthorized => Current != null;
+        public string Nickname => Current?.Nickname;
+        public string Name => Current?.Name;
+        public double? Weight => Current?.Weight;
+        public double? Height => Current?.Height;
+        public DateTime? Birthdate => Current?.Birthdate;
+        public Gender? Gender => Current?.Gender;
 
 
-        public void SetName(string name)
+        public bool SetName(string name)
         {
-            if (Current != null)
-                Current.Name = name;
+            if (Current == null || name == null ||
+                0 < Validate.UserName(name).Count)
+                return false;
+            Current.Name = name;
+            return true;
         }
 
         public void SetWeight(double weight)
@@ -56,12 +61,9 @@ namespace WorkoutApp.Controller
         #endregion
 
         /// <summary>
-        /// All registered users
+        /// All registered users on local machine
         /// </summary>
-        /// <remarks>
-        /// Only in console version
-        /// </remarks>
-        private List<User> RegisteredUsers { get; set; }
+        private Dictionary<string, User> RegisteredUsers { get; set; }
 
         public UserController()
         {
@@ -71,23 +73,20 @@ namespace WorkoutApp.Controller
         }
 
         /// <summary>
-        /// Registers new user by nickname
+        /// Register new user by nickname
         /// </summary>
         /// <param name="nickname"> New user's nickname </param>
-        /// <param name="name"> New user's name </param>
-        /// <param name="weight"> New user's weight in kg </param>
-        /// <param name="height"> New user's height in meters</param>
         /// <returns> If user registered successfully </returns>
-        public bool TryRegisterNewUser(string nickname, string name = null, double weight = 0, double height = 0)
+        public bool TryRegisterNewUser(string nickname)
         {
-            var user = new User(nickname, name, weight, height);
+            var user = new User(nickname);
             var context = new ValidationContext(user);
             var results = new List<ValidationResult>();
             var isUserValid = Validator.TryValidateObject(user, context, results, true);
             if (isUserValid &&
-                RegisteredUsers.FirstOrDefault(i => i.Nickname == nickname) == null)
+                !RegisteredUsers.ContainsKey(nickname))
             {
-                RegisteredUsers.Add(user);
+                RegisteredUsers[nickname] = user;
                 return true;
             }
             return false;
@@ -95,13 +94,18 @@ namespace WorkoutApp.Controller
 
         public bool TryAuthorize(string nickname)
         {
-            var user = RegisteredUsers.FirstOrDefault(i => i.Nickname == nickname);
-            Current = user ?? Current;
-            return Current != null;
+            if (RegisteredUsers.ContainsKey(nickname))
+            {
+                Current = RegisteredUsers[nickname];
+                return true;
+            }
+            return false;
         }
 
 
-        public void Save() => Save(ProjectInfo.UsersData, RegisteredUsers);
-        private List<User> LoadUsers() => Load<List<User>>(ProjectInfo.UsersData) ?? new List<User>();
+        public void Save() =>
+            Save(ProjectInfo.UsersData, RegisteredUsers);
+        private Dictionary<string, User> LoadUsers() =>
+            Load<Dictionary<string, User>>(ProjectInfo.UsersData) ?? new Dictionary<string, User>();
     }
 }
