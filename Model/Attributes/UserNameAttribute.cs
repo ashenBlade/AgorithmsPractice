@@ -20,11 +20,5 @@ namespace WorkoutApp.Attributes
                 return new ValidationResult("Name can contain only letters");
             return ValidationResult.Success;
         }
-
-        public override bool IsValid(object value)
-        {
-            return !Regex.IsMatch(value?.ToString() ?? string.Empty, @"\s") &&
-                   Regex.IsMatch(value?.ToString() ?? string.Empty, @"^[[A-Z]?[a-z]*]?$");
-        }
     }
 }
