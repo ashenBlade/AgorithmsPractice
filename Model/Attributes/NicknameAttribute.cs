@@ -21,11 +21,5 @@ namespace WorkoutApp.Attributes
             return new
                 ValidationResult("Nickname can contain only letters, digits and underline character");
         }
-
-        public override bool IsValid(object value)
-        {
-            return Regex.Match(value?.ToString() ?? string.Empty, @"\s").Success &&
-                Regex.Match(value?.ToString() ?? string.Empty, @"^\w+[a-zA-Z0-9]+\w*$").Success;
-        }
     }
 }
