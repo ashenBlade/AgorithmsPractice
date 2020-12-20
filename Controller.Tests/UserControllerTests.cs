@@ -5,7 +5,7 @@ using WorkoutApp.Controller;
 
 namespace Controller.Tests
 {
-    public class Tests
+    public class UserControllerTests
     {
         [SetUp]
         public void Setup()
@@ -35,7 +35,7 @@ namespace Controller.Tests
         [TestCase(".NetFramework", TestName = "Dot in the first position")]
         [TestCase("", TestName = "Empty string")]
         [TestCase(null, TestName = "Argument is null")]
-        [TestCase("nullablevauesareperqwerwerwreqrqerwtfect", TestName = "Long nickname (>20 chars)")]
+        [TestCase("nullablevasdfghjklkjhgfdfghjkjhgfdfghjjhgfdfghjkjhgfdfghjkjhgfdfghjkuesareperqwerwerwreqrqerwtfect", TestName = "Long nickname (>50 chars)")]
         [TestCase("Vasiliy Ivanov", TestName = "Contains white spaces")]
         [TestCase("_____", TestName = "Contains only underlines")]
         public void CanNotRegisterNewUserWithInvalidNickname(string nickname)
@@ -48,14 +48,22 @@ namespace Controller.Tests
         [TestCase("Vaya200", Description = "With digits")]
         [TestCase("__Vasya__", Description = "With underline characters")]
         [TestCase("Vasya__2008__", Description = "With underline characters and digits")]
-        public void CanNotRegisterNewUserWithInvalidName(string name)
+        [TestCase(null, Description = "NULL")]
+        [TestCase("", Description = "Empty string")]
+        [TestCase("       ", Description = "Only whitespaces")]
+        [TestCase("Try", Description = "Only 3 characters")]
+        [TestCase("ahawetpvawufhbapiufyabpfwefwegwefwefawcefaweestrjydttrthnesrabWNGARGAEAEvawawfvnf", Description = "Too long name")]
+        public void CanNotSetInvalidUserName(string name)
         {
             var nickname = "SimpleNickname";
             var uc = new UserController();
-            Assert.IsFalse(uc.TryRegisterNewUser(nickname, name));
+            uc.TryRegisterNewUser(nickname);
+            uc.TryAuthorize(nickname);
+            Assert.IsFalse(uc.SetName(name));
         }
 
         [TestCase("ZebraLion")]
+        [TestCase("qwrtyuiop")]
         public void CanAuthorizeRegisteredUser(string nickname)
         {
             var uc = new UserController();
@@ -87,12 +95,12 @@ namespace Controller.Tests
             uc.SetHeight(height);
             uc.SetWeight(weight);
             uc.SetGender(gender);
-            Assert.AreEqual(nickname, uc.GetNickname);
-            Assert.AreEqual(name, uc.GetName);
-            Assert.AreEqual(dateOfBirth, uc.GetBirthdate);
-            Assert.AreEqual(gender, uc.GetGender);
-            Assert.AreEqual(weight, uc.GetWeight);
-            Assert.AreEqual(height, uc.GetHeight);
+            Assert.AreEqual(nickname, uc.Nickname);
+            Assert.AreEqual(name, uc.Name);
+            Assert.AreEqual(dateOfBirth, uc.Birthdate);
+            Assert.AreEqual(gender, uc.Gender);
+            Assert.AreEqual(weight, uc.Weight);
+            Assert.AreEqual(height, uc.Height);
         }
     }
 }
