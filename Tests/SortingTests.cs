@@ -7,7 +7,7 @@ namespace Tests
     public class Tests
     {
         // (SORTED[], NOT_SORTED[])
-        private (int[], int[]) CreateArrays(int size)
+        public (int[], int[]) CreateArrays(int size)
         {
             var sorted = new int[size];
             var rand = new Random();
