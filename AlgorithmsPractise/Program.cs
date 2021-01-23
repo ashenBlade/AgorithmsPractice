@@ -10,7 +10,7 @@ namespace AlgorithmsPractise
             new Sorting().MergeSort(array);
             foreach (var i in array)
             {
-                Console.WriteLine(i + " ");
+                Console.Write(i + " ");
             }
         }
     }
