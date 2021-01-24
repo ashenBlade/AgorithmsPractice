@@ -35,9 +35,13 @@ namespace Tests
             Assert.AreEqual(expected, actual);
         }
 
-        private int GetUniqueElement(int[] array)
+        [TestCase(2, 10, 1.414213562)]
+        [TestCase(4, 10, 2)]
+        [TestCase(9, 15, 3)]
+        public void SquareRoot(double number, int depth, double expected)
         {
-            return array.Max() + 1;
+            var actual = new Searching().CalculateSquareRoot(number, depth);
+            Assert.AreEqual(expected, actual, 0.001);
         }
     }
 }

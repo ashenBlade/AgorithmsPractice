@@ -8,3 +8,6 @@ Sorting algoritms:
 
 Searching Algorithms:
 <li> Binary search
+
+Miscellanious:
+<li> Square root searching (using binary search)
